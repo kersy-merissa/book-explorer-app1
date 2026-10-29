@@ -1,0 +1,1 @@
+We created the Book Explorer web app with responsive pages, book searching through the Open Library API, and favorites saved using localStorage. We also practiced GitHub collaboration by creating feature branches, making commits, pushing changes to GitHub, and preparing pull requests as required in Lab 4.

@@ -3,6 +3,7 @@
 export async function fetchBooks(query = 'javascript') {
     try {
         const encodedQuery = encodeURIComponent(query);
+
         const response = await fetch(
             `https://openlibrary.org/search.json?title=${encodedQuery}`
         );

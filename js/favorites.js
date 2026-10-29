@@ -1,28 +1,16 @@
-// Get stored favorites from localStorage
 export function getFavorites() {
-    const storedFavorites = localStorage.getItem('bookExplorerFavorites');
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
-}
+    try {
+        const storedFavorites = localStorage.getItem(
+            'bookExplorerFavorites'
+        );
 
-// Save favorites array to localStorage
-function saveFavorites(favoritesArray) {
-    localStorage.setItem('bookExplorerFavorites', JSON.stringify(favoritesArray));
-}
+        const favorites = storedFavorites
+            ? JSON.parse(storedFavorites)
+            : [];
 
-// Add a book to favorites
-export function addFavorite(book) {
-    const favorites = getFavorites();
-    const isAlreadySaved = favorites.some(fav => fav.key === book.key);
-    
-    if (!isAlreadySaved) {
-        favorites.push(book);
-        saveFavorites(favorites);
+        return Array.isArray(favorites) ? favorites : [];
+    } catch (error) {
+        console.error('Could not load favorites:', error);
+        return [];
     }
-}
-
-// Remove a book from favorites by its key
-export function removeFavorite(bookKey) {
-    let favorites = getFavorites();
-    favorites = favorites.filter(book => book.key !== bookKey);
-    saveFavorites(favorites);
 }
